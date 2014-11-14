@@ -3,11 +3,15 @@
 import json
 import urllib2
 import datetime
+import socket
 
 accesstoken = "<accesstoken>"
 idx = "<idx>"
 url = "http://<server>:8080"
 last = ""
+
+timeout = 10
+socket.setdefaulttimeout(timeout)
 
 while True:
     try:
@@ -28,6 +32,9 @@ while True:
     except TypeError:
         print "***TypeError***"
         continue
+    except socket.error:
+        print "***SocketError"
+        continue
 
     if not last == j_obj['createddate'] + " " + str(j_obj['power']):
         parent = j_obj_day["data"]
@@ -47,6 +54,9 @@ while True:
             continue
         except TypeError:
             print "***TypeError***"
+            continue
+        except socket.error:
+            print "***SocketError"
             continue
 
         print j_obj['createddate'] + " " + str(j_obj['power']) + " " + str(energy_day)
