@@ -33,7 +33,7 @@ while True:
         print "***TypeError***"
         continue
     except socket.error:
-        print "***SocketError"
+        print "***SocketError***"
         continue
 
     if not last == j_obj['createddate'] + " " + str(j_obj['power']):
@@ -56,7 +56,7 @@ while True:
             print "***TypeError***"
             continue
         except socket.error:
-            print "***SocketError"
+            print "***SocketError***"
             continue
 
         print j_obj['createddate'] + " " + str(j_obj['power']) + " " + str(energy_day)
